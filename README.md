@@ -1,11 +1,21 @@
 Workshop "Web development in Kotlin"
 ====================================
 
+Material for the workshop "Web development in Kotlin" by Schwarz IT.
+
 Contents
 --------
 
 * [exercises.pdf](exercises.pdf)\
   The exercises for the workshop.
+
+* [slides.pdf](slides.pdf)\
+  The slides used during the workshop.
+
+* Folder **`code`**.\
+  Source code used during the workshop.
+  Open the `code` folder as a project in IntelliJ IDEA.
+  The exercises can also be worked on inside this project.
 
 Links
 -----

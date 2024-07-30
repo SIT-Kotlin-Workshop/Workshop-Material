@@ -1,0 +1,26 @@
+body {
+    padding: 2em;
+    font-family: sans-serif;
+}
+
+#errorbox {
+    color: red;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.price-history {
+    margin-top: 1em;
+    min-width: 800px;
+}
+
+table.price-history tr:nth-child(odd) td, table.price-history tr:nth-child(odd) th {
+    background-color: #DDD;
+}
+table.price-history tr:nth-child(even) td, table.price-history tr:nth-child(even) th {
+    background-color: #EEE;
+}
+
+table.price-history input {
+    min-width: 80%;
+}

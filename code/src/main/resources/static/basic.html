@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Kodee's online shop</title>
+    <link href="./common.css" rel="stylesheet">
+</head>
+<body>
+
+<h1>Welcome at Kodee's little online shop</h1>
+
+<p id="stats">Stats loading...</p>
+
+<script src="./common.js"></script>
+<script type="application/javascript">
+    const url = "../basic/decoupled"
+    console.log("Sending request to", url);
+    sendGET(url).then(parseJson).then(response => {
+        console.log("Got response", response);
+        document.getElementById("stats").innerHTML =
+            `Orders at ${response.timestamp}: ${response.totalOrders} total, ${response.ordersInDelivery} of which in delivery`
+    });
+</script>
+</body>
+</html>
