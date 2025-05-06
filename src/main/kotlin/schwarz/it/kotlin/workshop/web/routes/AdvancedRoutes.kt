@@ -1,11 +1,11 @@
 package schwarz.it.kotlin.workshop.web.routes
 
-import io.github.smiley4.ktoropenapi.get
-import io.github.smiley4.ktoropenapi.post
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
+import io.ktor.server.routing.get
+import io.ktor.server.routing.post
 import io.ktor.server.routing.route
 import schwarz.it.kotlin.workshop.web.dto.AdvancedShopStatisticsDTO
 import schwarz.it.kotlin.workshop.web.dto.OrderCreationDTO
@@ -115,5 +115,33 @@ fun Route.advancedRoutes() {
 
             call.respond(HttpStatusCode.Created, identifier)
         }
+
+        // Oh, no! The “Delete” button next to each order in the frontend doesn’t work!
+        //
+        // Implement a DELETE endpoint for the URL "/advanced/order/{identifier}"
+        // that reads the identifier from the URL and deletes the corresponding order.
+        //
+        // Respond with an appropriate error when the order doesn't exist.
+        // (Bonus question: Can this error be caused by using the frontend?)
+        //
+        // Don't forget to write tests!
+
+        // TODO("Implement DELETE endpoint and tests")
+
+
+        // The “Reschedule” functionality doesn’t seem to work either.
+        //
+        // Implement a POST endpoint for the URL "/advanced/order/{identifier}"
+        // that reads the identifier from the URL and an `OrderReschedulingDTO` from the request body
+        // and reschedules the order as specified by the user.
+        //
+        // Don't forget to write tests!
+
+        // TODO("Implement POST endpoint and tests")
+
+        // Bonus tasks:
+        // You can implement some improvements, for example:
+        // - Orders can only be rescheduled if they are not in delivery yet.
+        // - Kodee only delivers on Monday to Tuesday 9:00 to 17:00 or Friday and Saturday 9:00 to 12:00
     }
 }

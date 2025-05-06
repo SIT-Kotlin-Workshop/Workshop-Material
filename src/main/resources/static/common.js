@@ -1,3 +1,12 @@
+const getText = async response => {
+    try{
+        const text = await response.text();
+        return text;
+    } catch(err) {
+        return [];
+    }
+}
+
 const parseJson = async response => {
     try{
         const text = await response.text();

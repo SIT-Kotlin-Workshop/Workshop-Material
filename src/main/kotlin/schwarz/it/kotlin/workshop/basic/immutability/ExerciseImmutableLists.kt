@@ -8,4 +8,7 @@ private fun main() {
     // 3. Create a new list by adding an element
 
     // 4. Print both lists
+
+    // Use Join to concatenate the second list and print the result
+
 }

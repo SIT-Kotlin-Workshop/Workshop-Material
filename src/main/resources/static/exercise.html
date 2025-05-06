@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Kodee's online shop</title>
+    <link href="./common.css" rel="stylesheet">
+</head>
+<body>
+
+<h1>Exercise</h1>
+
+<div class="container">
+    <h2 id="text">Loading...</h2>
+</div>
+
+<input id="newText" type="text">
+<button onclick="updateText()">Update</button>
+<button onclick="resetText()">Reset</button>
+<span id="stats">Loading...</span>
+
+<script src="./common.js"></script>
+<script type="application/javascript">
+    const url = "../exercise/text"
+
+    function refreshPage() {
+        console.log("Sending request to", url);
+        sendGET(url).then(getText).then(response => {
+            console.log("Got response", response);
+            document.getElementById("text").innerHTML = response;
+        });
+        const statsUrl = "../exercise/text/stats"
+        console.log("Sending request to", statsUrl);
+        sendGET(statsUrl).then(getText).then(response => {
+            console.log("Got response", response);
+            document.getElementById("stats").innerHTML = response;
+        });
+    };
+
+    function updateText() {
+        const newText = document.getElementById("newText").value;
+        console.log("Sending new text", newText, "to", url);
+        sendPOST(url, newText)
+            .then(() => refreshPage());
+    }
+
+
+    function resetText() {
+        const resetUrl = "../exercise/text/reset"
+        console.log("Sending reset to", resetUrl);
+        sendPOST(resetUrl, undefined)
+            .then(() => refreshPage());
+    }
+
+    refreshPage();
+</script>
+</body>
+</html>

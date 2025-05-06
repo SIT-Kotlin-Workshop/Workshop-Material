@@ -1,36 +1,28 @@
 package schwarz.it.kotlin.workshop.web.routes
 
-import io.kotest.core.spec.style.AnnotationSpec
-import io.kotest.matchers.longs.shouldBeGreaterThanOrEqual
-import io.kotest.matchers.longs.shouldBeLessThan
-import io.kotest.matchers.shouldBe
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isGreaterThanOrEqualTo
+import assertk.assertions.isLessThan
 import io.ktor.client.call.body
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.http.HttpStatusCode
-import io.ktor.serialization.kotlinx.json.json
-import io.ktor.server.testing.testApplication
+import org.junit.jupiter.api.Test
 import schwarz.it.kotlin.workshop.web.dto.ShopStatisticsDTO
+import util.integrationTest
 
-class BasicRoutesTest : AnnotationSpec() {
+class BasicRoutesTest {
     @Test
     fun `endpoint decoupled - returns statistics`() =
-        testApplication {
-            val client =
-                createClient {
-                    install(ContentNegotiation) {
-                        json()
-                    }
-                }
-
+        integrationTest { client ->
             val response = client.get("/basic/decoupled")
 
-            response.status shouldBe HttpStatusCode.OK
+            assertThat(response.status).isEqualTo(HttpStatusCode.OK)
 
             val body = response.body<ShopStatisticsDTO>()
 
-            body.totalOrders shouldBeLessThan 20
-            body.ordersInDelivery shouldBeLessThan body.totalOrders
-            body.ordersInDelivery shouldBeGreaterThanOrEqual 2
+            assertThat(body.totalOrders).isLessThan(20)
+            assertThat(body.ordersInDelivery).isLessThan(body.totalOrders)
+            assertThat(body.ordersInDelivery).isGreaterThanOrEqualTo(2)
         }
 }

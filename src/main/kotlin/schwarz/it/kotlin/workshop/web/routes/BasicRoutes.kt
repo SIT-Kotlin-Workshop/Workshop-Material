@@ -1,11 +1,11 @@
 package schwarz.it.kotlin.workshop.web.routes
 
-import io.github.smiley4.ktoropenapi.get
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.response.respond
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.Route
+import io.ktor.server.routing.get
 import io.ktor.server.routing.route
 import schwarz.it.kotlin.workshop.web.dto.ShopStatisticsDTO
 import java.time.LocalDateTime
@@ -51,18 +51,7 @@ fun Route.basicRoutes() {
             }
         }
 
-        get(
-            "/decoupled",
-            {
-                description = "get current shop statistics"
-                response {
-                    HttpStatusCode.OK to {
-                        description = "Successful request"
-                        body<ShopStatisticsDTO> { description = "the current statistics" }
-                    }
-                }
-            },
-        ) {
+        get("/decoupled") {
             val totalOrders = Random.nextLong(from = 6, until = 20)
             val inDelivery = Random.nextLong(from = 2, until = totalOrders / 2)
 

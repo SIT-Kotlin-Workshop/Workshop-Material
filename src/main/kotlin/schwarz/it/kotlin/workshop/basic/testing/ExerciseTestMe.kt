@@ -21,15 +21,3 @@ fun testMe(candidates: List<String>): Int {
 
     return result
 }
-
-fun testMeRefactored(candidates: List<String>): Int =
-    if (candidates.any { it.isBlank() }) {
-        error("Input contains blank string")
-    } else {
-        candidates.count {
-            val candidate = it.trim()
-            (0..candidate.length / 2).all { i ->
-                candidate[i].lowercaseChar() == candidate[candidate.lastIndex - i].lowercaseChar()
-            }
-        }
-    }

@@ -1,5 +1,5 @@
 package schwarz.it.kotlin.workshop.basic.introduction
 
-fun main() {
+private fun main() {
     println("Hello, world")
 }

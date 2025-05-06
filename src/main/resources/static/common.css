@@ -24,3 +24,13 @@ table.price-history tr:nth-child(even) td, table.price-history tr:nth-child(even
 table.price-history input {
     min-width: 80%;
 }
+
+.container {
+    width: 100%;
+}
+
+.container h2 {
+    width: fit-content;
+    display: block;
+    margin: 0 auto;
+}

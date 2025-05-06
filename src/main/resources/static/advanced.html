@@ -129,7 +129,7 @@ Delivery next
         return sendGET(url).then(parseJson).then(response => {
             console.log("Got response", response);
             document.getElementById("stats").innerHTML =
-                `Open orders at ${response.timestamp}: ${response.openOrders} open, ${response.ordersInDelivery} of which in delivery`;
+                `Open orders at ${response.timestamp}: ${response.totalOrders} orders, ${response.ordersInDelivery} of which are in delivery`;
 
             const orders = response.orders.map( identifier =>
                 `
