@@ -12,9 +12,9 @@ Contents
 * [slides.pdf](slides.pdf)\
   The slides used during the workshop.
 
-* Folder **`code`**.\
+* Folder **`Workshop-Material`**.\
   Source code used during the workshop.
-  Open the `code` folder as a project in IntelliJ IDEA.
+  Open the `Workshop-Material` folder as a project in IntelliJ IDEA.
   The exercises can also be worked on inside this project.
 
 Links
