@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Kodee's online shop</title>
+    <link href="./common.css" rel="stylesheet">
+</head>
+<body>
+
+<h1>Welcome at Kodee's little online shop</h1>
+
+<button onclick="initialize()">Initialize with random data</button>
+
+<p id="errorbox"></p>
+
+<p id="stats">Stats loading...</p>
+
+<ul id="orders">
+</ul>
+
+<h2>Create order</h2>
+<form></form>
+Cost:
+<input id="cost" type="text">
+Delivery next
+<select id="day">
+    <option selected="selected" value="MONDAY">Monday</option>
+    <option value="TUESDAY">Tuesday</option>
+    <option value="WEDNESDAY">Wednesday</option>
+    <option value="THURSDAY">Thursday</option>
+    <option value="FRIDAY">Friday</option>
+    <option value="SATURDAY">Saturday</option>
+</select>
+<button onclick="createOrder()">Create</button>
+
+<script src="./common.js"></script>
+<script type="application/javascript">
+    function handleError(response) {
+        if (!response.ok) {
+            console.error(response);
+
+            document.getElementById("errorbox").innerHTML =
+                `ERROR - HTTP status ${response.status} ${response.statusText}`;
+        } else {
+            document.getElementById("errorbox").innerHTML = "";
+        }
+        return response;
+    }
+
+    function initialize() {
+        const url = `../advanced/initialize`;
+        sendPOST(url, {}).then(() =>
+            refreshPage()
+        );
+    }
+
+    function createOrder() {
+        const url = `../advanced/order`;
+        const cost = document.getElementById("cost").value;
+        const day = document.getElementById("day").value;
+        const orderCreation = {
+            cost: cost,
+            deliveryDay: day,
+        };
+        console.log("Sending new order", orderCreation, "to", url);
+        sendPOST(url, orderCreation)
+            .then(handleError)
+            .then(parseJson)
+            .then(responseIdentifier =>
+                refreshPage().then(() =>
+                    getOrderInfo(responseIdentifier)
+                )
+        );
+    }
+
+    function getOrderInfo(identifier) {
+        const url = `../advanced/order/${identifier}`;
+        console.log("Getting order information for", identifier, "from", url);
+        sendGET(url).then(parseJson).then(response => {
+            document.getElementById(`order-info-${identifier}`).innerHTML =
+                `
+                ${response.cost}€, ${response.status}, expected delivery date ${response.estimatedDeliveryDate}
+                <br/>
+                Reschedule to next
+                <select id="reschedule-day-${identifier}">
+                    <option selected="selected" value="MONDAY">Monday</option>
+                    <option value="TUESDAY">Tuesday</option>
+                    <option value="WEDNESDAY">Wednesday</option>
+                    <option value="THURSDAY">Thursday</option>
+                    <option value="FRIDAY">Friday</option>
+                    <option value="SATURDAY">Saturday</option>
+                </select>
+                <input id="reschedule-hour-${identifier}" size="2" type="text"> 'o clock
+                <button onclick="rescheduleOrder(${identifier})">Reschedule</button>
+                `
+        });
+    }
+
+     function rescheduleOrder(identifier) {
+        const url = `../advanced/order/${identifier}`;
+        const hour = document.getElementById(`reschedule-hour-${identifier}`).value;
+        const day = document.getElementById(`reschedule-day-${identifier}`).value;
+        const dto = {
+            hour: hour,
+            deliveryDay: day,
+        };
+        console.log("Rescheduling order", identifier, "to", dto);
+        sendPOST(url, dto)
+            .then(handleError)
+            .then(() => {
+                refreshPage().then(() =>
+                    getOrderInfo(identifier)
+                )
+        });
+    }
+
+    function deleteOrder(identifier) {
+        const url = `../advanced/order/${identifier}`;
+        console.log("Getting order information for", identifier, "from", url);
+        sendDELETE(url).then(handleError).then(() =>
+            refreshPage()
+        );
+    }
+
+    function refreshPage() {
+        const url = "../advanced/overview";
+        console.log("Sending request to", url);
+        return sendGET(url).then(parseJson).then(response => {
+            console.log("Got response", response);
+            document.getElementById("stats").innerHTML =
+                `Open orders at ${response.timestamp}: ${response.totalOrders} orders, ${response.ordersInDelivery} of which are in delivery`;
+
+            const orders = response.orders.map( identifier =>
+                `
+                <li>
+                    <strong>Order ${identifier}</strong>
+                    <button onclick="getOrderInfo(${identifier})">Get information</button>
+                    <button onclick="deleteOrder(${identifier})">Delete</button>
+                    <p id="order-info-${identifier}"></p>
+                </li>`
+            ).join('');
+            document.getElementById("orders").innerHTML = orders;
+        });
+    };
+
+    refreshPage();
+</script>
+</body>
+</html>
