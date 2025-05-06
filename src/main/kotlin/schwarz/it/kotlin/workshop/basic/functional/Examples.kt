@@ -1,4 +1,4 @@
-package schwarz.it.kotlin.workshop.basic.syntax
+package schwarz.it.kotlin.workshop.basic.functional
 
 data class CartItem(val name: String, val quantity: Int, val price: Double)
 
