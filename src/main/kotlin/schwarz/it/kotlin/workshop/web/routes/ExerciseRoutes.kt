@@ -16,17 +16,12 @@ fun Route.exerciseRoutes() {
         post("/text") {
             // Update the text to the request body to make the "Update" button work.
             // Hint: Access the `call` object
-
         }
         // Add another endpoint here that handles HTTP POST requests for "/exercise/text/reset"
         // and resets the text to its default value
 
-        // TODO("Implement POST endpoint")
-
         // Add another endpoint here that handles HTTP GET requests for "/exercise/text/stats"
         // that responds with a message how often has the text been updated
         // e.g. "Updated 8 times, last on 2025-05-06T13:45:00"
-
-        // TODO("Implement GET endpoint")
     }
 }

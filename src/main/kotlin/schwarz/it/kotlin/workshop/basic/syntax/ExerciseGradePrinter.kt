@@ -14,11 +14,7 @@ fun printGrade(
     student: String,
     score: Int,
 ) {
-    // with nested if-else:
-
-    // with when statement
-
-    // with when expression:
+    TODO()
 }
 
 /**

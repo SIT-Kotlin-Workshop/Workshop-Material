@@ -6,16 +6,10 @@ fun highestSatisfying(
     list: List<Int>,
     predicate: (Int) -> Boolean,
 ): Int? {
-    // TODO()
-
-    return null // Placeholder return value for the solution
+    TODO()
 }
 
 private fun main() {
     // Use the function to find the highest number that divides 1337 (not equal to 1337 itself)
-    val number =
-        highestSatisfying((1..<1337).toList()) {
-            1337 % it == 0
-        }
-    println(number)
+    TODO()
 }

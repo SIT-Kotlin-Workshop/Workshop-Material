@@ -10,13 +10,13 @@ private fun main() {
 
     // 1. Use a higher-order function to obtain the first 20 square numbers
 
-    val squares = listOf<Int>() // TODO("Write the solution using map")
+    val squares = listOf<Int>() // TODO
 
     println(squares)
 
     // 2. Use higher-order functions to find the sum of all squares of numbers in 1..100 that are divisible by 3.
 
-    val sum = 0 // TODO("Write the solution using filter and map")
+    val sum = 0 // TODO
 
     println(sum)
 
@@ -24,13 +24,13 @@ private fun main() {
 
     // 3. Use higher-order functions to find the line in `lines` that contains the letter `o` the most often
 
-    val line = "" // TODO("Write the solution using maxBy")
+    val line = "" // TODO
 
     println(line)
 
     // 4. Use the `fold` higher-order function to count the total number of `o`s in lines.
 
-    val count = 0 // TODO("Write the solution using fold")
+    val count = 0 // TODO
 
     println(count)
 }

@@ -126,9 +126,6 @@ fun Route.advancedRoutes() {
         //
         // Don't forget to write tests!
 
-        // TODO("Implement DELETE endpoint and tests")
-
-
         // The “Reschedule” functionality doesn’t seem to work either.
         //
         // Implement a POST endpoint for the URL "/advanced/order/{identifier}"
@@ -136,8 +133,6 @@ fun Route.advancedRoutes() {
         // and reschedules the order as specified by the user.
         //
         // Don't forget to write tests!
-
-        // TODO("Implement POST endpoint and tests")
 
         // Bonus tasks:
         // You can implement some improvements, for example:

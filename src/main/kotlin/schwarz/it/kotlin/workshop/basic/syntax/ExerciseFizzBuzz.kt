@@ -10,5 +10,5 @@ package schwarz.it.kotlin.workshop.basic.syntax
  * - "FizzBuzz" if the number is divisible by both 3 and 5
  */
 private fun main() {
-    // TODO("Implement Fizz-Buzz logic here")
+    TODO()
 }

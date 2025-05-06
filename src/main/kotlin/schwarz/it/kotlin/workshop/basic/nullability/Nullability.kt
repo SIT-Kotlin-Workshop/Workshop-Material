@@ -16,9 +16,9 @@ private fun main() {
     // val person: Person = null
     val person = Person("James", LocalDate.of(1955, 5, 19))
 
-    // Property access would crash with NPE
+    // Property access would crash with NPE if person is `null`
     println(person.name)
 
-    // Function call would crash will NPE
+    // Function call would crash will NPE if person is `null`
     println(person.format())
 }
