@@ -24,6 +24,10 @@ data class OrderRepository(
     val orders: MutableMap<Long, Order> = mutableMapOf(),
 )
 
+/**
+ * The frontend for this exercise is available at
+ * `http://localhost:8080/frontend/advanced.html`.
+ */
 fun Route.advancedRoutes() {
     val repository = OrderRepository()
 

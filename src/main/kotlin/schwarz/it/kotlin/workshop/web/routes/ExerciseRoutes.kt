@@ -6,6 +6,10 @@ import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.route
 
+/**
+ * The frontend for this exercise is available at
+ * `http://localhost:8080/frontend/exercise.html`.
+ */
 fun Route.exerciseRoutes() {
     var text = "This is a text stored on the server."
 
